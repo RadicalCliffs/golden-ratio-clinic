@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { answers, totalScore, result } = body;
 
-    const { error } = await supabase.from("quiz_submissions").insert({
+    const { error } = await getSupabase().from("quiz_submissions").insert({
       answers,
       total_score: totalScore,
       result_category: result,
